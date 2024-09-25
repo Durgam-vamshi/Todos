@@ -17,7 +17,7 @@ const Home = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const result = await axios.get('https://todos-9njx.onrender.com/get');
+        const result = await axios.get('http://localhost:4000/get');
         setTodos(result.data);
       } catch (err) {
         console.log(err);
@@ -33,7 +33,7 @@ const Home = () => {
   };
 
   const handleUpdate = (id) => {
-    axios.put(`https://todos-9njx.onrender.com/update/${id}`, { task: editingText })
+    axios.put(`http://localhost:4000/update/${id}`, { task: editingText })
       .then(result => {
         setTodos(todos.map(todo => (todo._id === id ? { ...todo, task: editingText } : todo)));
         setEditingId(null); // Reset editing state
@@ -43,7 +43,7 @@ const Home = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`https://todos-9njx.onrender.com/delete/${id}`)
+    axios.delete(`http://localhost:4000/delete/${id}`)
       .then(() => {
         setTodos(todos.filter(todo => todo._id !== id));
       })
@@ -51,7 +51,7 @@ const Home = () => {
   };
 
   const handleToggleDone = (todo) => {
-    axios.put(`https://todos-9njx.onrender.com/update/${todo._id}`, { done: !todo.done })
+    axios.put(`http://localhost:4000/update/${todo._id}`, { done: !todo.done })
       .then(result => {
         setTodos(todos.map(t => (t._id === todo._id ? { ...t, done: !t.done } : t)));
       })
