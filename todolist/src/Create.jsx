@@ -9,7 +9,7 @@ const Create = () => {
 
   const handleAdd = () => {
     if (!task) return; // Prevent empty task submissions
-    axios.post('https://todos-9njx.onrender.com/add', { task: task })
+    axios.post('http://localhost:4000', { task: task })
       .then(result => {
         setTask(''); // Reset the input field
         window.location.reload(); // Reload to fetch updated todos
